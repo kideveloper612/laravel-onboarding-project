@@ -58,7 +58,7 @@
                            <a href="{{route('formselect')}}" class="btn bg-indigo waves-effect" id="previousButton">Previous</a>
                         </li>
                         <li>
-                           <button type="submit" class="btn bg-indigo waves-effect" id="finishButton">Result</button>
+                           <button type="submit" class="btn bg-indigo waves-effect" id="finishButton">submit</button>
                         </li>
                      </ul>
                   </div>

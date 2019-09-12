@@ -140,7 +140,8 @@
 
                 // optionally set height to the parent's height
                 o.height = (o.height == 'auto') ? me.parent().height() : o.height;
-
+                var height = (parseInt(o.height.substring(0, 3))-75).toString();
+                var fixHeight = height.concat("px");
                 // wrap content
                 var wrapper = $(divS)
                   .addClass(o.wrapperClass)
@@ -148,7 +149,7 @@
                       position: 'relative',
                       overflow: 'hidden',
                       width: o.width,
-                      height: "750px"
+                      height: fixHeight
                   });
 
                 // update style for the div

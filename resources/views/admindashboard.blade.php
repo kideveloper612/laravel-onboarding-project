@@ -25,7 +25,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box text-center"> 
                     <div class="content">
-                        <div class="text count first"><?php echo(get_object_vars(json_decode($data['title']))['first']->num*10); ?></div>
+                        <div class="text count first"><?php echo(get_object_vars(json_decode($data['title']))['first']->num); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-red">
                         <h4><?php echo(get_object_vars(json_decode($data['title']))['first']->title); ?></h4>
@@ -35,7 +35,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box text-center">
                     <div class="content">
-                        <div class="text count second"><?php echo(get_object_vars(json_decode($data['title']))['second']->num*10); ?></div>
+                        <div class="text count second"><?php echo(get_object_vars(json_decode($data['title']))['second']->num); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-blue">
                         <h4><?php echo(get_object_vars(json_decode($data['title']))['second']->title); ?></h4>
@@ -45,7 +45,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box text-center">
                     <div class="content">
-                        <div class="text count third"><?php echo(get_object_vars(json_decode($data['title']))['third']->num*10); ?></div>
+                        <div class="text count third"><?php echo(get_object_vars(json_decode($data['title']))['third']->num); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-green">
                         <h4><?php echo(get_object_vars(json_decode($data['title']))['third']->title); ?></h4>
@@ -55,7 +55,7 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="info-box text-center">
                     <div class="content">
-                        <div class="text count forth"><?php echo(get_object_vars(json_decode($data['title']))['forth']->num*10); ?></div>
+                        <div class="text count forth"><?php echo(get_object_vars(json_decode($data['title']))['forth']->num); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-black">
                         <h4><?php echo(get_object_vars(json_decode($data['title']))['forth']->title); ?></h4>
@@ -180,6 +180,64 @@
     </div>
 </div>
 <!-- #END# -->
+
+<!-- Link Add Modal -->
+<div class="modal fade" id="newLinkAdd" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center" id="Label">Please Insert a New File</h2>
+            </div>
+            <form id="form_validation" method="post" action="/linksave" enctype='multipart/form-data'>
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <label for="editName">Link Name:</label>
+                    <div class="form-group eidtInput">
+                        <div class="form-line">
+                            <input type="text" id="newLinkName" class="form-control" name="newLinkName" required>
+                        </div>
+                    </div>
+                    <label for="editEmail">Upload File:</label>
+                    <div class="form-group eidtInput">
+                        <div class="form-line">
+                            <input type="file" id="uploadFile" class="form-control" name="uploadFile" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-blue waves-effect">Upload</button>
+                    <button class="btn waves-effect" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Link Remove Modal -->
+<div class="modal fade" id="linkRemove" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center" id="Label">Please Select a Link For Deleting</h2>
+            </div>
+            <form id="form_validation" method="post" action="{{route('linkremove')}}">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <label for="editName">Link Name:</label>
+                    <div class="form-group eidtInput">
+                        <div class="form-line">
+                            <select id="linkList" class="form-control" name="linkList" required></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-blue waves-effect">Delete</button>
+                    <button class="btn waves-effect" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @include('./dashboard/footer')
 

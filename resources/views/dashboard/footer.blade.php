@@ -77,23 +77,29 @@
 
             var id = $(this).data("id");
             var token = $(this).data("token");
+           
             $.ajax(
             {
+                header:{
+                    'X-CSRF-TOKEN':token,
+                },
                 url: "home/delete/"+id,
                 type: 'DELETE',
                 dataType: "JSON",
                 data: {
                     "id": id,
                     "_method": 'DELETE',
-                    "_token": token,
                 },
                 success: function ()
                 {
                     window.location.reload();
+                },
+                error: function()
+                {
+                    console.log("It failed");
                 }
             });
 
-            console.log("It failed");
         });
 
         // Record Edit
@@ -116,26 +122,31 @@
 
         // Record Remove
         $(".deleteUser").click(function(){
-
+            
             var id = $(this).data("id");
             var token = $(this).data("token");
+
             $.ajax(
-            {
+            {  
+                header:{
+                    'X-CSRF-TOKEN':token,
+                },              
                 url: "user/delete/"+id,
                 type: 'DELETE',
                 dataType: "JSON",
                 data: {
                     "id": id,
                     "_method": 'DELETE',
-                    "_token": token,
                 },
                 success: function ()
                 {
                     window.location.reload();
+                },
+                error: function()
+                {
+                    console.log('It failed');
                 }
             });
-
-            console.log("It failed");
         });
 
         // Form Remove
@@ -150,8 +161,27 @@
             $('#subRemoveId').attr('data-id', id);
         }
 
-              
-    </script>   
+        // Link Add
+        async function onLinkAdd(){
+            $('#newLinkAdd').modal('show');
+        }
+
+        // Link Remove
+        async function onLinkRemove(){
+            var res =await Ajax_request("{{route('linkremovelist')}}", 'GET');
+            
+            let linkName = JSON.parse(res).map(({linkName}) => linkName);
+            let id = JSON.parse(res).map(({id}) => id);
+          
+            $("#linkList").empty();
+            $('#linkList').append("<option value='' selected>-- Please select --</option>");
+            for(index in id,linkName){
+                $( "#linkList" ).append("<option value='" + id[index] + "'>" + linkName[index] + "</option>");
+            }
+            $('#linkRemove').modal('show');
+        }
+    </script>  
+
     <script>  
         var form = '<?php echo isset($formData) ? $formData : ""; ?>';       
         jQuery(function($) {

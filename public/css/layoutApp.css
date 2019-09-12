@@ -129,11 +129,15 @@ footer {
 	padding: 0 !important;
 }
 
+/*logo image in dashboard*/
 .dashImg{
 	background: #021769;
-	border-top: 1px solid #666;
-	width: 100%;
-	height: 100%;
+	max-width: 100%;
+}
+
+/*match menu to bottom of logo image in sidebar*/
+.user-info{
+	height: auto!important;
 }
 
 .info-box{
@@ -199,7 +203,9 @@ td >span{
 .fb-radio-group.form-group >label.fb-radio-group-label,
 .fb-select.form-group >label.fb-select-label,
 .fb-file.form-group >label.fb-file-label,
-.fb-date.form-group >label.fb-date-label{
+.fb-date.form-group >label.fb-date-label,
+.fb-number.form-group >label.fb-number-label,
+.fb-textarea.form-group >label.fb-textarea-label{
 	font-size: 1.4em!important;
 	font-weight: 400;
 }
@@ -340,3 +346,17 @@ div.form-group.validation_label>label{
 .form-group label.error{
 	font-size: 14px;
 }
+
+/*usersetting*/
+.userSetting, .linkSetting{
+	font-size: 10px;
+}
+
+.userSettingIcon, .linkSettingIcon{
+	font-size: 16px;
+}
+
+/*user management table style*/
+/*div.container-fluid div.row.clearfix div.col-lg-12.col-md-12.col-sm-12.col-xs-12{
+	width: auto!important;
+}*/

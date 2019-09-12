@@ -101,7 +101,7 @@
                     <li>
                         <a href="{{ route('formselect') }}">
                             <i class="material-icons">question_answer</i>
-                            <span>Access Form</span>
+                            <span>Form Selection</span>
                         </a>
                     </li>
                     <li>
@@ -162,10 +162,18 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>
                             <span>User Setting</span>
-                        </a>
+                        </a>                       
+                        <ul class="ml-menu">                            
+                            <li>
+                                <a onclick="onEdit(<?php echo auth()->user()->id; ?>)"><i class="material-icons userSettingIcon">person_outline</i><span class="userSetting">My Information Reset</span></a>
+                            </li>
+                            <li>
+                                <a onclick="onPassword(<?php echo auth()->user()->id;?>)"><i class="material-icons userSettingIcon">lock_outline</i><span class="userSetting">My Password Reset</span></a>
+                            </li>   
+                        </ul>
                     </li>
                 </ul>
                 <div id="logout">
@@ -183,3 +191,75 @@
         <!-- #END# Left Sidebar -->       
     </section>
     <!-- #Side Bar -->
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="Label">User Information Reset</h2>
+                </div>
+                <form method="post" id="formEditModal" action="">
+                    {{ csrf_field() }}
+                    {{ method_field('PATCH') }}
+                    <div class="modal-body">
+                            <label for="editName">Name:</label>
+                            <div class="form-group eidtInput">
+                                <div class="form-line">
+                                    <input type="text" id="editName" class="form-control" name="editName" required>
+                                </div>
+                            </div>
+                            <label for="editEmail">Email Address:</label>
+                            <div class="form-group eidtInput">
+                                <div class="form-line">
+                                    <input type="text" id="editEmail" class="form-control" name="editEmail" required>
+                                </div>
+                            </div>
+                            <label for="editPhone">Phone Number:</label>
+                            <div class="form-group eidtInput">
+                                <div class="form-line">
+                                    <input type="text" id="editPhone" class="form-control" name="editPhone" required>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn bg-blue waves-effect">Save</button>
+                        <button class="btn waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div class="modal fade" id="passwordReset" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center" id="Label">Password Reset</h2>
+                </div>
+                <form method="post" id="passwordSet" action="">
+                    {{ csrf_field() }}
+                    {{ method_field('PATCH') }}
+                    <div class="modal-body">
+                            <label for="editName">New Password:</label>
+                            <div class="form-group eidtInput">
+                                <div class="form-line">
+                                    <input type="password" id="newPassword" class="form-control" name="newPassword" required>
+                                </div>
+                            </div>
+                            <label for="editEmail">Confirm Password:</label>
+                            <div class="form-group eidtInput">
+                                <div class="form-line">
+                                    <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" required>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn bg-blue waves-effect">Save</button>
+                        <button class="btn waves-effect" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>            
+            </div>
+        </div>
+    </div>

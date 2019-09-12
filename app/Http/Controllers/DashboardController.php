@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Formdata;
 use Illuminate\Support\Facades\DB;
 use App\Formbuild;
-
+use App\Link;
 
 class DashboardController extends Controller
 {
@@ -99,5 +99,49 @@ class DashboardController extends Controller
         );
       
         return view('dashboard')->with('data', $array);
+    }
+
+    // Link save
+    public function Link(Request $request){
+
+        // Get file for uploading
+        $file = $request->file('uploadFile');
+
+        // File Details
+        $filename = $file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+        $tempPath = $file->getRealPath();
+        $fileSize = $file->getSize();
+        $mimeType = $file->getMimeType();
+
+        // file upload
+        $path = $file->storeAs('public', $filename);
+
+        // Save Links
+        $url = asset("storage/".$filename);
+
+        $userId= 0;
+        $link = new Link;
+        $link->userID = $userId;
+        $link->linkName = $request->get('newLinkName');
+        $link->link = $url;
+
+        $link->save();
+
+        return redirect()->back();        
+    }
+
+    // Get List of Link for Removing
+    public function linkRemoveList(){
+        $link = DB::table('links') -> select('id', 'linkName') -> get();
+        echo $link;
+    }
+
+    // Link Remove
+    public function linkRemove(Request $request){
+        $link = Link::find($request->get('linkList'));
+        $link->delete();
+
+        return redirect()->back();
     }
 }

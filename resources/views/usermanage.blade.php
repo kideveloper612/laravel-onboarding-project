@@ -187,7 +187,7 @@
                 Will you really remove this user infomation?
             </div>
             <div class="modal-footer">
-                <button id="userRemoveId" class="deleteUser btn bg-blue waves-effect" data-id="" data-token="{{ csrf_token() }}">Ok</button>
+                <button id="userRemoveId" class="deleteUser btn bg-blue waves-effect" data-id="" data-token="{{ csrf_token() }}">Remove</button>
                 <button class="btn btn-green waves-effect" data-dismiss="modal">Cancel</button>
             </div>
         </div>

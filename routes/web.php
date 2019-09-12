@@ -43,3 +43,7 @@ Route::resource('build', 'BuildController');
 Route::put('/formEdit/{user}', 'UserController@update') -> name('formEdit');
 Route::get('/formBuild', 'BuildController@index') -> name('formBuild');
 Route::post('/formSave', 'BuildController@store') -> name('formSave');
+
+Route::post('/linksave', 'DashboardController@Link') -> name('linksave');
+Route::get('/linkremovelist', 'DashboardController@linkRemoveList') -> name('linkremovelist');
+Route::post('/linkremove', 'DashboardController@linkRemove') -> name('linkremove');

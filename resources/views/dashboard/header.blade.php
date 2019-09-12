@@ -103,49 +103,7 @@
                             <li>
                                 <a href="<?php echo $value->link; ?>" target="_blank"><?php echo($value->linkName); ?></a>
                             </li>
-                            <?php } ?>
-                            <li>
-                                <a href="https://dispatch.evertransit.com" target="_blank">Ever Transit</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/drive/my-drive" target="_blank">Google Drive</a>
-                            </li>
-                            <li>
-                                <a href="https://my131.geotab.com/venturaems/#map,liveVehicleIds:!(b14,b2,bA,bF)" target="_blank">GPS Mapping</a>
-                            </li>
-                            <li>
-                                <a href="https://www.nj.gov/911/home/highlights/EMD%20Guidecards%202017%20elec%20proj%20V4%20.pdf" target="_blank">EMD Guide Cards</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/file/d/1HGZJOO4RPadaov4Uhhm8-8Itmxpv_Srq/view?usp=sharing" target="_blank">Source log Count Sheet</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=1Ir27e8zSU9D1kWQ4ksvlZJvnNFZq9gjF" target="_blank">Medical Abbreviations</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=1RQPF7UuCGyBh9oO8Ks1BTTrX75ogT3h7" target="_blank">Examples of Transport Types</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=13j528SBNXTCQdGp9iimuXDLvjxQW-mdo" target="_blank">PHI Narative</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=1g3HFOzn7aAE-UVb-m5HXmWB7DMjh2YDB" target="_blank">Call Taking Forms</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=0B5pXzTLykRzpVHp4NXZQUERnOHBvcTdUbEczMkxtbFRWeExj" target="_blank">PCS Form</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=0B5pXzTLykRzpM0xZOFZNVDFVdncxZGw5UExHNU80ei1uVmMw" target="_blank">Patient Care Report</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=1BTOnWBzP1tF3gnRGDbDuHOnLy_2vX5SN" target="_blank">Approved Dispatch Complaints for Radio</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=1nzYvZE3hwt839q5MlpNZls0OVb0P9Z4m" target="_blank">PHI Individual Station Numbers</a>
-                            </li>
-                            <li>
-                                <a href="https://drive.google.com/open?id=1qqkijAbzt3W9EUH8eKxCL2_oAdxti6Il" target="_blank">911 Desk Sheet</a>
-                            </li>
+                            <?php } ?>                            
                         </ul>
                     </li>
                     <li>
@@ -159,6 +117,20 @@
                             <i class="material-icons">group</i>
                             <span>User Management</span>
                         </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">link</i>
+                            <span>Link Manager</span>
+                        </a>
+                        <ul class="ml-menu">                            
+                            <li>
+                                <a onclick="onLinkAdd()"><i class="material-icons linkSettingIcon">add_circle</i><span class="linkSetting">Link Add</span></a>
+                            </li>
+                            <li>
+                                <a onclick="onLinkRemove()"><i class="material-icons linkSettingIcon">remove_circle</i><span class="linkSetting">Link Remove</span></a>
+                            </li>                         
+                        </ul>
                     </li>
                 </ul>
                 <div id="logout">

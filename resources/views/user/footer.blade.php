@@ -70,6 +70,47 @@
             setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 300);
         });
 
+        // Record Edit
+        async function onEdit(id){            
+            var res = await Ajax_request('/userEditData', 'GET', id);
+            var array = JSON.parse(res)[0]
+            
+            document.getElementById('editName').value = array['name'];
+            document.getElementById('editEmail').value = array['email'];
+            document.getElementById('editPhone').value = array['phoneNumber'];
+            $('#formEditModal').attr('action', '/formUpdate/'+array['id']);
+            $('#editModal').modal('show');
+        }
+
+        // Record Password Reset
+        async function onPassword(id){
+            $('#passwordSet').attr('action', '/user/'+id);
+            $('#passwordReset').modal('show');
+        }
+
+        // password reset validation
+        $("#passwordSet").validate({
+            rules: {
+                newPassword: { 
+                    required: true,
+                    minlength: 8,
+                    maxlength: 15,
+                } , 
+
+                password_confirmation: { 
+                    equalTo: "#newPassword",
+                    minlength: 8,
+                    maxlength: 15
+                }
+            },
+
+            messages:{
+                password: { 
+                    required:"the password is required"
+                }
+            }
+        }); 
+
     </script>
 
     <script type="text/javascript">
