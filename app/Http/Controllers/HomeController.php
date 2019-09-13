@@ -107,12 +107,11 @@ class HomeController extends Controller
 
             $total = DB::table('formdatas')->where('userId', '=', $id)->count();
         }
-        // dd($data);
+
         // initialize for landing of login and register pages
         $content = [];
         $titleContent = [];
-        // dd($data->toArray()['data']);
-        // foreach (json_decode($data) as $key => $value) {
+
         foreach ($data as $key => $value) {
             $answerRecord = array_values(get_object_vars(json_decode(json_decode($value->formContent)->answer)));
             $labelRecord = array_values(json_decode(json_decode($value->formContent)->label));
@@ -162,42 +161,56 @@ class HomeController extends Controller
 
         $section = json_decode(DB::table('formbuilds')->select('section')->get());
         $num = $header = $order = array();
-        //$order[0] = $order[1] = $order[2] = $order[3] = 0;
+
         foreach ($section as $key => $value) {
             $num[$value->section] = 0;
         }
         foreach ($section as $key => $keyName) {
+            if($keyName->section === 'Missed Call' || $keyName->section === 'TRHC Cancelled Call' || $keyName->section === 'Employee Late/Call In' || $keyName->section === 'Call In Complaint' || $keyName->section === 'Important information update' || $keyName->section === 'Late to Call (Over 5 minutes)'){
             foreach ($titleContent as $key => $value) {
                 $sectionName = json_decode(get_object_vars(json_decode($value['formContent']))["answer"])[0];
                 if($sectionName === $keyName->section)  $num[$keyName->section]++;
             }
+            
             $header['title'] = $keyName->section;
             $header['num'] = $num[$keyName->section];
             $order[] = $header;
-        }
-
-        $count = count($section);
-        for ($i=0; $i <$count ; $i++) { 
-            for ($j=$i+1; $j <$count ; $j++) { 
-                if($order[$i]['num'] < $order[$j]['num']){
-
-                    $exchangeTitle = $order[$i]['title'];
-                    $order[$i]['title'] = $order[$j]['title'];
-                    $order[$j]['title'] = $exchangeTitle;
-
-                    $exchangeNum = $order[$i]['num'];
-                    $order[$i]['num'] = $order[$j]['num'];
-                    $order[$j]['num'] = $exchangeNum;
-                }
             }
         }
 
+        $countQuestion = array();
+        foreach ($order as $key => $value) {
+            if($value['title'] === 'Late to Call (Over 5 minutes)') $countQuestion[0] = $value['num'];
+            if($value['title'] === 'Missed Call') $countQuestion[1] = $value['num'];
+            if($value['title'] === 'TRHC Cancelled Call') $countQuestion[2] = $value['num'];
+            if($value['title'] === 'Employee Late/Call In') $countQuestion[3] = $value['num'];
+            if($value['title'] === 'Call In Complaint') $countQuestion[4] = $value['num'];
+            if($value['title'] === 'Important information update') $countQuestion[5] = $value['num'];
+        }
+        // $count = count($section);
+        // for ($i=0; $i <$count ; $i++) { 
+        //     for ($j=$i+1; $j <$count ; $j++) { 
+        //         if($order[$i]['num'] < $order[$j]['num']){
+
+        //             $exchangeTitle = $order[$i]['title'];
+        //             $order[$i]['title'] = $order[$j]['title'];
+        //             $order[$j]['title'] = $exchangeTitle;
+
+        //             $exchangeNum = $order[$i]['num'];
+        //             $order[$i]['num'] = $order[$j]['num'];
+        //             $order[$j]['num'] = $exchangeNum;
+        //         }
+        //     }
+        // }
         $title = array(
-            'first' => $order[0],
-            'second' => $order[1],
-            'third' => $order[2],
-            'forth' => $order[3]
+            'first' => $countQuestion[0],
+            'second' => $countQuestion[1],
+            'third' => $countQuestion[2],
+            'forth' => $countQuestion[3],
+            'fifth' => $countQuestion[4],
+            'sixth' => $countQuestion[5]
         );
+        
         $array = array(
             'content' => json_encode($content),
             'title' => json_encode($title),

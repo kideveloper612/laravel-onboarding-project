@@ -132,12 +132,15 @@ footer {
 /*logo image in dashboard*/
 .dashImg{
 	background: #021769;
-	max-width: 100%;
+	max-width: 75%;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 /*match menu to bottom of logo image in sidebar*/
 .user-info{
 	height: auto!important;
+	background:#021769!important; 
 }
 
 .info-box{
@@ -153,6 +156,9 @@ footer {
     position: absolute;
     bottom: 0px;
     color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 /*Event position in section selecting*/
@@ -171,19 +177,27 @@ footer {
 }
 
 .count.first{
-	color: red!important;
+	color: #F44336!important;
 }
 
 .count.second{
-	color: blue!important;
+	color: #2196F3!important;
 }
 
 .count.third{
-	color: green!important;
+	color: #4CAF50!important;
 }
 
 .count.forth{
-	color: black!important;
+	color: #E91E63!important;
+}
+
+.count.fifth{
+	color: #795548!important;
+}
+
+.count.sixth{
+	color: #000000!important;
 }
 
 /* Preloader */

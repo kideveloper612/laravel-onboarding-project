@@ -77,7 +77,7 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
-            <div class="user-info">
+            <div class="user-info text-center">
                 <img class="dashImg" src="./images/logo.png" alt="User" />
             </div>
             <!-- #User Info -->
@@ -132,6 +132,9 @@
                             </li>                         
                         </ul>
                     </li>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success waves-effect" onclick="onExcel()">Export to Excel</button>
+                    </div>
                 </ul>
                 <div id="logout">
                     <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -22,43 +22,69 @@
 
         <!-- Widgets -->
         <div class="row clearfix">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box text-center"> 
                     <div class="content">
-                        <div class="text count first"><?php echo(get_object_vars(json_decode($data['title']))['first']->num); ?></div>
+                        <div class="text count first"><?php echo(get_object_vars(json_decode($data['title']))['first']); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-red">
-                        <h4><?php echo(get_object_vars(json_decode($data['title']))['first']->title); ?></h4>
+                        <!-- <h4><?php //echo(get_object_vars(json_decode($data['title']))['first']->title); ?></h4> -->
+                        <h4>Late to Call (Over 5 minutes)</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box text-center">
                     <div class="content">
-                        <div class="text count second"><?php echo(get_object_vars(json_decode($data['title']))['second']->num); ?></div>
+                        <div class="text count second"><?php echo(get_object_vars(json_decode($data['title']))['second']); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-blue">
-                        <h4><?php echo(get_object_vars(json_decode($data['title']))['second']->title); ?></h4>
+                        <!-- <h4><?php //echo(get_object_vars(json_decode($data['title']))['second']->title); ?></h4> -->
+                        <h4>Missed Call</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box text-center">
                     <div class="content">
-                        <div class="text count third"><?php echo(get_object_vars(json_decode($data['title']))['third']->num); ?></div>
+                        <div class="text count third"><?php echo(get_object_vars(json_decode($data['title']))['third']); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-green">
-                        <h4><?php echo(get_object_vars(json_decode($data['title']))['third']->title); ?></h4>
+                        <!-- <h4><?php //echo(get_object_vars(json_decode($data['title']))['third']->title); ?></h4> -->
+                        <h4>TRHC Cancelled Call</h4>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box text-center">
                     <div class="content">
-                        <div class="text count forth"><?php echo(get_object_vars(json_decode($data['title']))['forth']->num); ?></div>
+                        <div class="text count forth"><?php echo(get_object_vars(json_decode($data['title']))['forth']); ?></div>
+                    </div>
+                    <div class="bottom-rect text-center bg-pink">
+                        <!-- <h4><?php //echo(get_object_vars(json_decode($data['title']))['forth']->title); ?></h4> -->
+                        <h4>Employee Late/Call In</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box text-center">
+                    <div class="content">
+                        <div class="text count fifth"><?php echo(get_object_vars(json_decode($data['title']))['fifth']); ?></div>
+                    </div>
+                    <div class="bottom-rect text-center bg-brown">
+                        <!-- <h4><?php //echo(get_object_vars(json_decode($data['title']))['fifth']->title); ?></h4> -->
+                        <h4>Call In Complaint</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                <div class="info-box text-center">
+                    <div class="content">
+                        <div class="text count sixth"><?php echo(get_object_vars(json_decode($data['title']))['sixth']); ?></div>
                     </div>
                     <div class="bottom-rect text-center bg-black">
-                        <h4><?php echo(get_object_vars(json_decode($data['title']))['forth']->title); ?></h4>
+                        <!-- <h4><?php //echo(get_object_vars(json_decode($data['title']))['sixth']->title); ?></h4> -->
+                        <h4>Important information update</h4>
                     </div>
                 </div>
             </div>

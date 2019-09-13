@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 
@@ -19,6 +19,7 @@ Auth::routes();
 
 
 //User Route
+Route::get('', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/formselect', 'HomeController@formselect')->name('formselect');
 Route::post('/sectionSelect', 'SectionController@show') -> name('sectionSelect');
@@ -47,3 +48,4 @@ Route::post('/formSave', 'BuildController@store') -> name('formSave');
 Route::post('/linksave', 'DashboardController@Link') -> name('linksave');
 Route::get('/linkremovelist', 'DashboardController@linkRemoveList') -> name('linkremovelist');
 Route::post('/linkremove', 'DashboardController@linkRemove') -> name('linkremove');
+Route::get('/export/excel', 'DashboardController@exportExcel') -> name('export.excel');

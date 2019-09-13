@@ -180,6 +180,11 @@
             }
             $('#linkRemove').modal('show');
         }
+
+        // Export Excel
+        function onExcel(){
+            window.location.href = "{{URL::to('export/excel')}}";
+        }
     </script>  
 
     <script>  
