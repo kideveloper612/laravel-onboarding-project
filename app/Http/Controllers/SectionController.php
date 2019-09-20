@@ -77,17 +77,19 @@ class SectionController extends Controller
         //Get label of all elements
         $formdata = DB::table('formbuilds')->where('section', '=', $request->get('section'))->pluck('form')[0];
             foreach (json_decode($formdata) as $value) {
-            if($value->type !== "paragraph" && $value->type !== "header"){
-                $labelInput[] = $value->label;
-            }            
-        }
+                if($value->type !== "paragraph" && $value->type !== "header"){
+                    $labelInput[] = $value->label;
+                }
+                if($value->type === 'header') $headerName = $value->label;            
+            }
+
         $formContent = array(
             'label' => json_encode($labelInput),
             'answer' => json_encode($array)
         );
 
         $labelcount = $contentcount = 0;
-        $text = '';
+        $text = $headerName;
         foreach ($labelInput as $labelkey => $labelvalue) {
             $temp = '';
             $labelcount++;
@@ -97,11 +99,10 @@ class SectionController extends Controller
                 }
                 $contentcount++;
             }
-            if($labelcount !== 1)
-            $text = $text.",".$temp;
-            else $text = $temp;
+            $text = $text."\n".$temp;
             $contentcount = 0;
         }
+
         // Save data submitted in database
         $user= auth()->user();
         $userName = DB::table('users')->where('id', '=', $user->id)->pluck('name')[0];
@@ -118,7 +119,7 @@ class SectionController extends Controller
         $sid    = env( 'TWILIO_SID' );
         $token  = env( 'TWILIO_TOKEN' );
         $client = new Client( $sid, $token );
-dd($text);
+
         if($userphone){
             $client->messages->create(
                 $userphone,
@@ -127,7 +128,8 @@ dd($text);
                 'body' => $text,
                 ]
             );
-        }        
+        } 
+        $text = '';
         return redirect()->route('dashboard')->with("Successfully message sent!");
     }
 }
