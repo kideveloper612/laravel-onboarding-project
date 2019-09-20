@@ -207,8 +207,8 @@
 </div>
 <!-- #END# -->
 
-<!-- Link Add Modal -->
-<div class="modal fade" id="newLinkAdd" tabindex="-1" role="dialog">
+<!-- File Upload Modal -->
+<div class="modal fade" id="newFileUpload" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -232,6 +232,38 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn bg-blue waves-effect">Upload</button>
+                    <button class="btn waves-effect" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Link Modal -->
+<div class="modal fade" id="newAddLink" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center" id="Label">Please Insert a New File</h2>
+            </div>
+            <form id="form_validation" method="post" action="/addlinksave">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <label for="editName">Link Name:</label>
+                    <div class="form-group eidtInput">
+                        <div class="form-line">
+                            <input type="text" id="newAddLinkName" class="form-control" name="newAddLinkName" required>
+                        </div>
+                    </div>
+                    <label for="editName">Link Url:</label>
+                    <div class="form-group eidtInput">
+                        <div class="form-line">
+                            <input type="text" id="newAddLinkUrl" class="form-control" name="newAddLinkUrl" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-blue waves-effect">Add Link</button>
                     <button class="btn waves-effect" data-dismiss="modal">Cancel</button>
                 </div>
             </form>

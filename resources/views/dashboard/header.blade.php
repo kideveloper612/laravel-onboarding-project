@@ -91,6 +91,12 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <!-- <li>
+                        <a href=" {{route('usersort')}} ">
+                            <i class="material-icons">sort</i>
+                            <span>User Sortting</span>
+                        </a>
+                    </li> -->
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">link</i>
@@ -125,11 +131,14 @@
                         </a>
                         <ul class="ml-menu">                            
                             <li>
-                                <a onclick="onLinkAdd()"><i class="material-icons linkSettingIcon">add_circle</i><span class="linkSetting">Link Add</span></a>
-                            </li>
+                                <a onclick="onFileUpload()"><i class="material-icons linkSettingIcon">add_circle</i><span class="linkSetting">File Upload</span></a>
+                            </li>                            
+                            <li>
+                                <a onclick="onAddLink()"><i class="material-icons linkSettingIcon">add_circle</i><span class="linkSetting">Link Add</span></a>
+                            </li> 
                             <li>
                                 <a onclick="onLinkRemove()"><i class="material-icons linkSettingIcon">remove_circle</i><span class="linkSetting">Link Remove</span></a>
-                            </li>                         
+                            </li>                      
                         </ul>
                     </li>
                     <div class="text-center">

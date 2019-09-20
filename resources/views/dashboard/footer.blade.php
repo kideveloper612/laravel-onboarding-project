@@ -161,9 +161,14 @@
             $('#subRemoveId').attr('data-id', id);
         }
 
+        // File Upload
+        async function onFileUpload(){
+            $('#newFileUpload').modal('show');
+        }
+
         // Link Add
-        async function onLinkAdd(){
-            $('#newLinkAdd').modal('show');
+        async function onAddLink(){
+            $('#newAddLink').modal('show');
         }
 
         // Link Remove

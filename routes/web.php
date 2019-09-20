@@ -46,6 +46,10 @@ Route::get('/formBuild', 'BuildController@index') -> name('formBuild');
 Route::post('/formSave', 'BuildController@store') -> name('formSave');
 
 Route::post('/linksave', 'DashboardController@Link') -> name('linksave');
+Route::post('/addlinksave', 'DashboardController@AddLink') -> name('addlinksave');
 Route::get('/linkremovelist', 'DashboardController@linkRemoveList') -> name('linkremovelist');
 Route::post('/linkremove', 'DashboardController@linkRemove') -> name('linkremove');
 Route::get('/export/excel', 'DashboardController@exportExcel') -> name('export.excel');
+
+Route::get('/usersort', 'DashboardController@userSortting') -> name('usersort');
+

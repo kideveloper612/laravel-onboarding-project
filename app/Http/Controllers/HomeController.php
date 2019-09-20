@@ -99,7 +99,6 @@ class HomeController extends Controller
                 ->orderBy('updated_at', 'DESC')
                 ->get();
             $url = DB::table('links')
-                ->where('userID', '=', $id)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
             $data = $data->toArray();

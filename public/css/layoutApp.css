@@ -374,3 +374,7 @@ div.form-group.validation_label>label{
 /*div.container-fluid div.row.clearfix div.col-lg-12.col-md-12.col-sm-12.col-xs-12{
 	width: auto!important;
 }*/
+
+.width{
+	width: auto!important;
+}

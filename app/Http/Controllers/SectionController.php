@@ -86,6 +86,22 @@ class SectionController extends Controller
             'answer' => json_encode($array)
         );
 
+        $labelcount = $contentcount = 0;
+        $text = '';
+        foreach ($labelInput as $labelkey => $labelvalue) {
+            $temp = '';
+            $labelcount++;
+            foreach ($array as $arraykey => $arrayvalue) {
+                if($labelcount === $contentcount){                    
+                    $temp = $labelvalue.":".$arrayvalue;
+                }
+                $contentcount++;
+            }
+            if($labelcount !== 1)
+            $text = $text.",".$temp;
+            else $text = $temp;
+            $contentcount = 0;
+        }
         // Save data submitted in database
         $user= auth()->user();
         $userName = DB::table('users')->where('id', '=', $user->id)->pluck('name')[0];
@@ -99,18 +115,19 @@ class SectionController extends Controller
         $userphone = DB::table('users')->where('id', '=', $user->id)->pluck('phoneNumber')[0];
 
         // Account SID and Auth Token from twilio.com/console
-        // $sid    = env( 'TWILIO_SID' );
-        // $token  = env( 'TWILIO_TOKEN' );
-        // $client = new Client( $sid, $token );
-
-        // $client->messages->create(
-        //     $userphone,
-        //     [
-        //        'from' => env( 'TWILIO_FROM' ),
-        //        'body' => "Successfully Saved!",
-        //     ]
-        // );
-        
-        return redirect()->route('dashboard');
+        $sid    = env( 'TWILIO_SID' );
+        $token  = env( 'TWILIO_TOKEN' );
+        $client = new Client( $sid, $token );
+dd($text);
+        if($userphone){
+            $client->messages->create(
+                $userphone,
+                [
+                'from' => env( 'TWILIO_FROM' ),
+                'body' => $text,
+                ]
+            );
+        }        
+        return redirect()->route('dashboard')->with("Successfully message sent!");
     }
 }

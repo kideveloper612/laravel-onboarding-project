@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Formbuild;
 use App\Link;
 use Maatwebsite\Excel\Facades\Excel;
+use App\User;
+use Illuminate\Support\Facades\Schema;
 
 
 use App\ExportFile;
@@ -54,6 +56,18 @@ class DashboardController extends Controller
         $link->save();
 
         return redirect()->back();        
+    }
+
+    public function AddLink(Request $request){
+        $userId= 0;
+        $link = new Link;
+        $link->userID = $userId;
+        $link->linkName = $request->get('newAddLinkName');
+        $link->link = $request->get('newAddLinkUrl');
+
+        $link->save();
+
+        return redirect()->back();   
     }
 
     // Get List of Link for Removing
@@ -115,5 +129,52 @@ class DashboardController extends Controller
         }
 
         return $record;          
+    }
+
+    // User sortting
+    
+    public function userSortting(){
+        $section = DB::table('formbuilds')->select('section')->get();
+        $allUserRecord = array();
+        $head = array(
+            '0' => "USERNAME",
+        );
+        foreach ($section as $key => $value) {
+            array_push($head, $value->section);
+        }
+        array_push($allUserRecord, $head);
+        $user = DB::table('users')->where('role' ,'=', '1')->select('id', 'name')->get();
+        foreach ($user as $userkey => $uservalue) {
+            $userRecord = array();
+            $allRecords = DB::table('formdatas')->select('userId', 'formContent')->get();
+            foreach ($allRecords as $allkey => $allvalue) {
+
+                if($uservalue->id === $allvalue->userId){
+                    array_push($userRecord, $allvalue);
+                }
+            }
+            $sectionArray = array(
+                '0' => $uservalue->name,
+            );
+            $section = DB::table('formbuilds')->select('section')->get();
+            foreach ($section as $sectionkey => $sectionvalue) {
+                $section = 0;
+                foreach ($userRecord as $usersectionkey => $usersectionvalue) {
+                    $sectionName = json_encode(get_object_vars(json_decode(json_decode(
+                               $usersectionvalue->formContent)->answer))['section']);
+                    $temp = json_encode($sectionvalue->section);
+                    if($sectionName === $temp) $section++;
+                }
+                array_push($sectionArray, $section);
+            }
+
+            array_push($allUserRecord, $sectionArray);
+            $sectionArray = array();    
+            $userRecord = array();
+        }
+        $data = $allUserRecord;
+        $allUserRecord = array();
+        return view('userSortting') -> with('data', $data);
+        
     }
 }

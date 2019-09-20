@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85dda2dc6b5e2c99ed132d8ed16746da",
+    "content-hash": "e97d6c84e44294ddca2aef4fd0d498f8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3227,16 +3227,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "5.35.0",
+            "version": "5.36.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twilio/twilio-php.git",
-                "reference": "a0e74651cdfba6dda780084e3dfc83002c0a71f2"
+                "reference": "ad4093a19762b76b1ec316ebdb6e0766539859ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/a0e74651cdfba6dda780084e3dfc83002c0a71f2",
-                "reference": "a0e74651cdfba6dda780084e3dfc83002c0a71f2",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/ad4093a19762b76b1ec316ebdb6e0766539859ff",
+                "reference": "ad4093a19762b76b1ec316ebdb6e0766539859ff",
                 "shasum": ""
             },
             "require": {
@@ -3245,7 +3245,7 @@
             "require-dev": {
                 "apigen/apigen": "^4.1",
                 "guzzlehttp/guzzle": "^6.3",
-                "phpunit/phpunit": "4.5.*"
+                "phpunit/phpunit": "^7.5"
             },
             "suggest": {
                 "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
@@ -3253,7 +3253,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Twilio\\": "Twilio/"
+                    "Twilio\\": "src/Twilio/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3273,7 +3273,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2019-09-04T23:10:35+00:00"
+            "time": "2019-09-18T22:10:18+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
