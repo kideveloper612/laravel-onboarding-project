@@ -84,7 +84,7 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
-            <div class="user-info">
+            <div class="user-info text-center">
                 <img class="dashImg" src="./images/logo.png" alt="User" />
             </div>
             <!-- #User Info -->

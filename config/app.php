@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://bluebird88.com/'),
 
-    'asset_url' => env('ASSET_URL', null),
+    //'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+   'timezone' => env('APP_TIMEZONE', 'America/Chicago'),
 
     /*
     |--------------------------------------------------------------------------

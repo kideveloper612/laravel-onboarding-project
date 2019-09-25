@@ -54,14 +54,20 @@ class SectionController extends Controller
             $tempPath = $file->getRealPath();
             $fileSize = $file->getSize();
             $mimeType = $file->getMimeType();
+$test= explode('/', base_path());
+array_pop($test); $baseUrl = implode('/', $test);
+$baseUrl = $baseUrl."/logs/uploads";
 
+$file->move($baseUrl, $filename);
             // file upload
-            $path = $request->file('fileName')->storeAs('public', $filename);
+            //$path = $request->file('fileName')->storeAs('public', $filename);
             $array = $request->all();
             $array['fileName'] = $filename;
-
+/*
             // Save Links
-            $url = asset("storage/".$filename);
+            $url = asset("uploads/".$filename);
+
+            //$url = asset("storage/".$filename);
             $userId= auth()->user()->id;
             $link = new Link;
             $link->userID = $userId;
@@ -69,6 +75,7 @@ class SectionController extends Controller
             $link->link = $url;
 
             $link->save();
+*/
         } else {
             $array = $request->all();
         }
@@ -129,6 +136,28 @@ class SectionController extends Controller
                 ]
             );
         } 
+
+        $formName = $request->get('section');
+        if($formName === "Maintenance Needed (Reported by Crew)" || $formName === "Maintenance Completed"){
+            $client->messages->create(
+                "+19362043111",
+                [
+                'from' => env( 'TWILIO_FROM' ),
+                'body' => $text,
+                ]
+            );
+            
+        }
+
+        if($formName === "Missed call" || $formName === "Employee Late/Call In" || $formName ==="Call In Complaint" ){
+            $client->messages->create(
+                "+19364447437",
+                [
+                'from' => env( 'TWILIO_FROM' ),
+                'body' => $text,
+                ]
+            );
+        }
         $text = '';
         return redirect()->route('dashboard')->with("Successfully message sent!");
     }

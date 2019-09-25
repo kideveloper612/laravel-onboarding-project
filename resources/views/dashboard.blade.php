@@ -107,7 +107,7 @@
                                             $ext = pathinfo($content, PATHINFO_EXTENSION); 
                                             if(!empty($ext)){
                                         ?>
-                                        <a href="<?php echo URL::asset('storage/'.$content)?>" target="_blank"><?php echo $content;?></a>
+                                        <a href="<?php echo URL::asset('uploads/'.$content)?>" target="_blank"><?php echo $content;?></a>
                                         <?php } else echo $content; ?>
                                     </td>
                                     <?php

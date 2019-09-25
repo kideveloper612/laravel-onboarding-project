@@ -50,6 +50,7 @@ class HomeController extends Controller
      */
 
     public function destroy($id){
+
     //For Deleting Users
         $subData = new Formdata;
         $subData = Formdata::find($id);

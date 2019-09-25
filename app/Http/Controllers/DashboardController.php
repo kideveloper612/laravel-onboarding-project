@@ -41,11 +41,17 @@ class DashboardController extends Controller
         $fileSize = $file->getSize();
         $mimeType = $file->getMimeType();
 
+$test= explode('/', base_path());
+array_pop($test); $baseUrl = implode('/', $test);
+$baseUrl = $baseUrl."/logs/uploads";
+
+$file->move($baseUrl, $filename);
+
         // file upload
-        $path = $file->storeAs('public', $filename);
+        //$path = $file->storeAs('public', $filename);
 
         // Save Links
-        $url = asset("storage/".$filename);
+        $url = asset("uploads/".$filename);
 
         $userId= 0;
         $link = new Link;

@@ -42,7 +42,7 @@
     <script src="./plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
     <!-- Password Reset jquery validate -->
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
    
     <!-- Custom Js -->
     <script src="./plugin/js/admin.js"></script>
@@ -55,7 +55,7 @@
 
     <!-- Form Build -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="http://formbuilder.online/assets/js/form-builder.min.js"></script>
+    <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
     <script type="text/javascript" src="https://formbuilder.online/assets/js/form-render.min.js"></script>
     
     <!-- Bootstrap Notify Plugin Js -->
@@ -80,7 +80,7 @@
            
             $.ajax(
             {
-                header:{
+                headers:{
                     'X-CSRF-TOKEN':token,
                 },
                 url: "home/delete/"+id,
@@ -128,7 +128,7 @@
 
             $.ajax(
             {  
-                header:{
+                headers:{
                     'X-CSRF-TOKEN':token,
                 },              
                 url: "user/delete/"+id,
@@ -163,6 +163,7 @@
 
         // File Upload
         async function onFileUpload(){
+
             $('#newFileUpload').modal('show');
         }
 
