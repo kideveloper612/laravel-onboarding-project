@@ -2,7 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <!-- Submitted count ranking -->
-        <div class="row clearfix">
+        <div class="row clearfix" style="display: none;">
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box text-center"> 
                     <div class="content">

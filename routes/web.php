@@ -35,6 +35,7 @@ Route::get('/dashboard', 'HomeController@index') -> name('dashboard');
 //Destroy submission
 Route::delete('/home/delete/{id}', 'HomeController@destroy');
 Route::get('/usermanagement', 'UserController@index') -> name('usermanagement');
+Route::get('/phonemanagement', 'UserController@index') -> name('phonemanagement');
 Route::get('/userEditData/{id}', 'UserController@show');
 Route::patch('/formUpdate/{post}', 'UserController@userUpdate');
 Route::delete('/user/delete/{id}', 'UserController@destroy');

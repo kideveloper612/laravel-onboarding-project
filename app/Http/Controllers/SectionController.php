@@ -47,6 +47,12 @@ class SectionController extends Controller
          // Get file for uploading
         $file = $request->file('fileName');
 
+        if ($request->has('phone_number')) {
+            dd($request->has('phone_number'));
+        } else {
+            dd('no');
+        }
+
         if($file){
             // File Details
             $filename = $file->getClientOriginalName();
@@ -54,11 +60,11 @@ class SectionController extends Controller
             $tempPath = $file->getRealPath();
             $fileSize = $file->getSize();
             $mimeType = $file->getMimeType();
-$test= explode('/', base_path());
-array_pop($test); $baseUrl = implode('/', $test);
-$baseUrl = $baseUrl."/logs/uploads";
+            $test= explode('/', base_path());
+            array_pop($test); $baseUrl = implode('/', $test);
+            $baseUrl = $baseUrl."/logs/uploads";
 
-$file->move($baseUrl, $filename);
+            $file->move($baseUrl, $filename);
             // file upload
             //$path = $request->file('fileName')->storeAs('public', $filename);
             $array = $request->all();
@@ -83,12 +89,12 @@ $file->move($baseUrl, $filename);
         
         //Get label of all elements
         $formdata = DB::table('formbuilds')->where('section', '=', $request->get('section'))->pluck('form')[0];
-            foreach (json_decode($formdata) as $value) {
-                if($value->type !== "paragraph" && $value->type !== "header"){
-                    $labelInput[] = $value->label;
-                }
-                if($value->type === 'header') $headerName = $value->label;            
+        foreach (json_decode($formdata) as $value) {
+            if($value->type !== "paragraph" && $value->type !== "header"){
+                $labelInput[] = $value->label;
             }
+            if($value->type === 'header') $headerName = $value->label;            
+        }
 
         $formContent = array(
             'label' => json_encode($labelInput),
@@ -126,7 +132,6 @@ $file->move($baseUrl, $filename);
         $sid    = env( 'TWILIO_SID' );
         $token  = env( 'TWILIO_TOKEN' );
         $client = new Client( $sid, $token );
-
         if($userphone){
             $client->messages->create(
                 $userphone,
@@ -146,7 +151,6 @@ $file->move($baseUrl, $filename);
                 'body' => $text,
                 ]
             );
-            
         }
 
         if($formName === "Missed call" || $formName === "Employee Late/Call In" || $formName ==="Call In Complaint" ){

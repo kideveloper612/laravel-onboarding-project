@@ -30,7 +30,7 @@
                            <a>
                               <span class="number">2.</span> Question
                            </a>
-                        </li>                      
+                        </li>
                      </ul>
                   </div>
 

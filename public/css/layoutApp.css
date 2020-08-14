@@ -374,6 +374,7 @@ div.form-group.validation_label>label{
 	width: auto!important;
 }
 
-.fb-select.form-group input, select {
-	border: 1px solid lightgrey!important;
+.form-group .form-control {
+	border: 1px solid lightgrey !important;
 }
+

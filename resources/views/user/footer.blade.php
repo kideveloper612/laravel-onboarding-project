@@ -134,6 +134,7 @@
                 document.getElementById('addedForm').innerHTML = requestData;
 
                 $('#addedForm').html(requestData);
+
                 $('input[type=time]').bootstrapMaterialDatePicker({
                     format: 'HH:mm',
                     clearButton: true,

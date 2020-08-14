@@ -90,13 +90,13 @@ class HomeController extends Controller
         }
         else {
             $data = DB::table('formdatas')
-                ->where('userId', '=', $id)
+                //->where('userId', '=', $id)
                 ->orderBy('updated_at', 'DESC')
                 ->offset(($page_num-1)*10)
                 ->limit(10)
                 ->get();
             $titleData = DB::table('formdatas')
-                ->where('userId', '=', $id)
+                //->where('userId', '=', $id)
                 ->orderBy('updated_at', 'DESC')
                 ->get();
             $url = DB::table('links')
@@ -202,13 +202,21 @@ class HomeController extends Controller
         //         }
         //     }
         // }
+        // $title = array(
+        //     'first' => $countQuestion[0],
+        //     'second' => $countQuestion[1],
+        //     'third' => $countQuestion[2],
+        //     'forth' => $countQuestion[3],
+        //     'fifth' => $countQuestion[4],
+        //     'sixth' => $countQuestion[5]
+        // );
         $title = array(
-            'first' => $countQuestion[0],
-            'second' => $countQuestion[1],
-            'third' => $countQuestion[2],
-            'forth' => $countQuestion[3],
-            'fifth' => $countQuestion[4],
-            'sixth' => $countQuestion[5]
+            'first' => '',
+            'second' => '',
+            'third' => '',
+            'forth' => '',
+            'fifth' => '',
+            'sixth' => ''
         );
         
         $array = array(

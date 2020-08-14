@@ -125,6 +125,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('usermanagement') }}">
+                            <i class="material-icons">phone</i>
+                            <span>Phone</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">link</i>
                             <span>Link Manager</span>
