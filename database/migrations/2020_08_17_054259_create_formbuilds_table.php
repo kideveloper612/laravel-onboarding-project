@@ -17,6 +17,7 @@ class CreateFormbuildsTable extends Migration
             $table->bigIncrements('id');
             $table->longText('form');
             $table->string('section');
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }

@@ -35,12 +35,17 @@ Route::get('/dashboard', 'HomeController@index') -> name('dashboard');
 //Destroy submission
 Route::delete('/home/delete/{id}', 'HomeController@destroy');
 Route::get('/usermanagement', 'UserController@index') -> name('usermanagement');
-Route::get('/phonemanagement', 'UserController@index') -> name('phonemanagement');
 Route::get('/userEditData/{id}', 'UserController@show');
 Route::patch('/formUpdate/{post}', 'UserController@userUpdate');
 Route::delete('/user/delete/{id}', 'UserController@destroy');
+Route::resource('phones', 'PhoneController');
 Route::resource('user', 'UserController');
 Route::resource('build', 'BuildController');
+
+Route::get('/readphone', 'PhoneController@show') -> name('readphone');
+Route::post('/addphone', 'PhoneController@create') -> name('addphone');
+Route::patch('/updatephone', 'PhoneController@update') -> name('updatephone');
+Route::delete('/deletephone', 'PhoneController@destroy') -> name('deletephone');
 
 Route::put('/formEdit/{user}', 'UserController@update') -> name('formEdit');
 Route::get('/formBuild', 'BuildController@index') -> name('formBuild');

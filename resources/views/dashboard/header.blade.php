@@ -125,7 +125,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('usermanagement') }}">
+                        <a href="{{ '/phones' }}">
                             <i class="material-icons">phone</i>
                             <span>Phone</span>
                         </a>

@@ -41,11 +41,11 @@ class DashboardController extends Controller
         $fileSize = $file->getSize();
         $mimeType = $file->getMimeType();
 
-$test= explode('/', base_path());
-array_pop($test); $baseUrl = implode('/', $test);
-$baseUrl = $baseUrl."/logs/uploads";
+        $test= explode('/', base_path());
+        array_pop($test); $baseUrl = implode('/', $test);
+        $baseUrl = $baseUrl."/logs/uploads";
 
-$file->move($baseUrl, $filename);
+        $file->move($baseUrl, $filename);
 
         // file upload
         //$path = $file->storeAs('public', $filename);

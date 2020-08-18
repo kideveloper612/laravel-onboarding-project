@@ -60,6 +60,7 @@
     
     <!-- Bootstrap Notify Plugin Js -->
     <script src="./plugins/bootstrap-notify/bootstrap-notify.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
 </body>
 
 </html>
@@ -153,6 +154,76 @@
         async function onRemove(id){
             $('#userRemoveModal').modal('show');
             $('#userRemoveId').attr('data-id', id);
+        }
+
+        async function phoneAdd(id, section) {
+            var res = await phone_ajax('/readphone', 'GET', id);
+            if (res.phone !== null) {
+                alert('Please edit!');
+                return;
+            }
+            $('#addId').val(res.id);
+            $('#add-modal').modal('show');
+
+            $('#add-modal #add_button').click(() => {
+                $('#addphone-form').ajaxSubmit({
+                    url: '/addphone',
+                    method: 'POST',
+                    success: function(res) {
+                        console.log(res);
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+        }
+
+        async function phoneUpdate(id, section, phone) {
+            var res = await phone_ajax('/readphone', 'GET', id);
+            if (res.phone === null) {
+                alert('Please add!');
+                return;
+            }
+            $('#updateId').val(res.id);
+            $('#updatephone').val(res.phone);
+            $('#update-modal').modal('show');
+
+            $('#update-modal #update-button').click(() => {
+                console.log('here');
+                $('#updatehone-form').ajaxSubmit({
+                    url: '/updatephone',
+                    method: 'patch',
+                    success: function(res) {
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+        }
+
+        async function phoneRemove(id) {
+            $('#deleteId').val(id);
+            $('#remove-modal').modal('show');
+            console.log('hdsfds');
+            return;
+
+            $('#remove-modal #remove-button').click(() => {
+                $('#deletephone-form').ajaxSubmit({
+                    url: '/deletephone',
+                    method: 'delete',
+                    success: function(res) {
+                        console.log(res);
+                        // window.location.reload();
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
         }
 
         //Submission Delete

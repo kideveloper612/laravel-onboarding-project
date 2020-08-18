@@ -47,12 +47,6 @@ class SectionController extends Controller
          // Get file for uploading
         $file = $request->file('fileName');
 
-        if ($request->has('phone_number')) {
-            dd($request->has('phone_number'));
-        } else {
-            dd('no');
-        }
-
         if($file){
             // File Details
             $filename = $file->getClientOriginalName();
@@ -142,10 +136,14 @@ class SectionController extends Controller
             );
         } 
 
+        $adminPhone = DB::table('formbuilds')->where('section', '=', $request->get('section'))->pluck('phone')[0];
+        if (empty($adminPhone)) {
+            $adminPhone = '19362043111';
+        }
         $formName = $request->get('section');
         if($formName === "Maintenance Needed (Reported by Crew)" || $formName === "Maintenance Completed"){
             $client->messages->create(
-                "+19362043111",
+                $adminPhone,
                 [
                 'from' => env( 'TWILIO_FROM' ),
                 'body' => $text,
@@ -155,7 +153,7 @@ class SectionController extends Controller
 
         if($formName === "Missed call" || $formName === "Employee Late/Call In" || $formName ==="Call In Complaint" ){
             $client->messages->create(
-                "+19364447437",
+                $adminPhone,
                 [
                 'from' => env( 'TWILIO_FROM' ),
                 'body' => $text,

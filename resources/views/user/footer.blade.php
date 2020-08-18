@@ -117,6 +117,7 @@
         // Form Render function
         $(document).ready(function() {
             if (typeof formdata !== 'undefined'){
+                console.log(formdata, '------------');
 
                 // Give file name for uploading file
                 for(i=0; i<formdata.length; i++){
