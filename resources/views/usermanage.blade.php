@@ -2,7 +2,6 @@
     
 <section class="content">
     <div class="container-fluid">
-        
         <!-- User Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
