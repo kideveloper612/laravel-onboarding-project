@@ -48,7 +48,7 @@ class DashboardController extends Controller
         $file->move($baseUrl, $filename);
 
         // file upload
-        //$path = $file->storeAs('public', $filename);
+        // $path = $file->storeAs('public', $filename);
 
         // Save Links
         $url = asset("uploads/".$filename);

@@ -43,7 +43,7 @@
 
     <!-- Password Reset jquery validate -->
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-   
+
     <!-- Custom Js -->
     <script src="./plugin/js/admin.js"></script>
     <script src="./plugin/js/pages/index.js"></script>
@@ -57,18 +57,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
     <script type="text/javascript" src="https://formbuilder.online/assets/js/form-render.min.js"></script>
-    
+
     <!-- Bootstrap Notify Plugin Js -->
     <script src="./plugins/bootstrap-notify/bootstrap-notify.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script> 
-</body>
+    <script src="./plugin/js/form.js"></script>
 
-</html>
-
-    
     <script type="text/javascript">
         $(document).ready(function(){
-            setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 300); 
+            setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 300);
         });
     </script>
 
@@ -78,7 +74,7 @@
 
             var id = $(this).data("id");
             var token = $(this).data("token");
-           
+
             $.ajax(
             {
                 headers:{
@@ -104,34 +100,34 @@
         });
 
         // Record Edit
-        async function onEdit(id){            
+        async function onEdit(id){
             var res = await Ajax_request('/userEditData', 'GET', id);
             var array = JSON.parse(res)[0]
-            
+
             document.getElementById('editName').value = array['name'];
             document.getElementById('editEmail').value = array['email'];
             document.getElementById('editPhone').value = array['phoneNumber'];
             $('#formEditModal').attr('action', '/formUpdate/'+array['id']);
             $('#editModal').modal('show');
-        } 
+        }
 
         // Record Password Reset
         async function onPassword(id){
             $('#passwordSet').attr('action', '/user/'+id);
             $('#passwordReset').modal('show');
-        } 
+        }
 
         // Record Remove
         $(".deleteUser").click(function(){
-            
+
             var id = $(this).data("id");
             var token = $(this).data("token");
 
             $.ajax(
-            {  
+            {
                 headers:{
                     'X-CSRF-TOKEN':token,
-                },              
+                },
                 url: "user/delete/"+id,
                 type: 'DELETE',
                 dataType: "JSON",
@@ -191,7 +187,6 @@
             $('#update-modal').modal('show');
 
             $('#update-modal #update-button').click(() => {
-                console.log('here');
                 $('#updatehone-form').ajaxSubmit({
                     url: '/updatephone',
                     method: 'patch',
@@ -246,10 +241,10 @@
         // Link Remove
         async function onLinkRemove(){
             var res =await Ajax_request("{{route('linkremovelist')}}", 'GET');
-            
+
             let linkName = JSON.parse(res).map(({linkName}) => linkName);
             let id = JSON.parse(res).map(({id}) => id);
-          
+
             $("#linkList").empty();
             $('#linkList').append("<option value='' selected>-- Please select --</option>");
             for(index in id,linkName){
@@ -262,16 +257,16 @@
         function onExcel(){
             window.location.href = "{{URL::to('export/excel')}}";
         }
-    </script>  
+    </script>
 
-    <script>  
-        var form = '<?php echo isset($formData) ? $formData : ""; ?>';       
+    <script>
+        var form = '<?php echo isset($formData) ? $formData : ""; ?>';
         jQuery(function($) {
             var fields = [{
                 label: "Time Field",
                 type: "text",
                 subtype: "time",
-                icon: "⏰" 
+                icon: "⏰"
             }];
             var fbOptions = {
                 fields: fields,
@@ -280,7 +275,7 @@
                 }
             }
 
-               
+
 
             var fbEditor = document.getElementById('build-wrap');
             var formBuilder =$(fbEditor).formBuilder(fbOptions);
@@ -300,18 +295,18 @@
             });
             }
         });
-    </script> 
+    </script>
 
     <script type="text/javascript">
         $("#passwordSet").validate({
             rules: {
-                newPassword: { 
+                newPassword: {
                     required: true,
                     minlength: 8,
                     maxlength: 15,
-                } , 
+                } ,
 
-                password_confirmation: { 
+                password_confirmation: {
                     equalTo: "#newPassword",
                     minlength: 8,
                     maxlength: 15
@@ -319,7 +314,7 @@
             },
 
             messages:{
-                password: { 
+                password: {
                     required:"the password is required"
                 }
             }

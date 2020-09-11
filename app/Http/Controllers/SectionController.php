@@ -22,12 +22,12 @@ class SectionController extends Controller
         $this->middleware('auth');
     }
 
-   
+
     /**
      * Display a section with questions.
      *
      * @return \Illuminate\Http\Response
-     */   
+     */
     public function show(Request $request)
     {
         // Session::flush();
@@ -38,7 +38,7 @@ class SectionController extends Controller
             "section" => $sectionName,
             "formdata" => $formdata
         );
-        
+
         return view('section')->with('data', $data);
     }
 
@@ -79,15 +79,15 @@ class SectionController extends Controller
         } else {
             $array = $request->all();
         }
-        
-        
+
+
         //Get label of all elements
         $formdata = DB::table('formbuilds')->where('section', '=', $request->get('section'))->pluck('form')[0];
         foreach (json_decode($formdata) as $value) {
             if($value->type !== "paragraph" && $value->type !== "header"){
                 $labelInput[] = $value->label;
             }
-            if($value->type === 'header') $headerName = $value->label;            
+            if($value->type === 'header') $headerName = $value->label;
         }
 
         $formContent = array(
@@ -101,7 +101,7 @@ class SectionController extends Controller
             $temp = '';
             $labelcount++;
             foreach ($array as $arraykey => $arrayvalue) {
-                if($labelcount === $contentcount){                    
+                if($labelcount === $contentcount){
                     $temp = $labelvalue.":".$arrayvalue;
                 }
                 $contentcount++;
@@ -117,7 +117,7 @@ class SectionController extends Controller
         $formDataSave->userId = $user->id;
         $formDataSave->userName = $userName;
         $formDataSave->formContent = json_encode($formContent);
-        
+
         $formDataSave -> save();
 
         $userphone = DB::table('users')->where('id', '=', $user->id)->pluck('phoneNumber')[0];
@@ -127,39 +127,55 @@ class SectionController extends Controller
         $token  = env( 'TWILIO_TOKEN' );
         $client = new Client( $sid, $token );
         if($userphone){
-            $client->messages->create(
-                $userphone,
-                [
-                'from' => env( 'TWILIO_FROM' ),
-                'body' => $text,
-                ]
-            );
-        } 
+            try {
+                $client->messages->create(
+                    $userphone,
+                    [
+                    'from' => env( 'TWILIO_FROM' ),
+                    'body' => $text,
+                    ]
+                );
+            } catch (Exception $e) {
+            }
+        }
 
         $adminPhone = DB::table('formbuilds')->where('section', '=', $request->get('section'))->pluck('phone')[0];
         if (empty($adminPhone)) {
-            $adminPhone = '19362043111';
-        }
-        $formName = $request->get('section');
-        if($formName === "Maintenance Needed (Reported by Crew)" || $formName === "Maintenance Completed"){
-            $client->messages->create(
-                $adminPhone,
-                [
-                'from' => env( 'TWILIO_FROM' ),
-                'body' => $text,
-                ]
-            );
+            $adminPhone = '12814151896';
         }
 
-        if($formName === "Missed call" || $formName === "Employee Late/Call In" || $formName ==="Call In Complaint" ){
-            $client->messages->create(
-                $adminPhone,
-                [
-                'from' => env( 'TWILIO_FROM' ),
-                'body' => $text,
-                ]
-            );
+        $numbers_in_arrays = explode( ',' , $adminPhone);
+        foreach( $numbers_in_arrays as $number )
+        {
+           $client->messages->create(
+               trim($number),
+               [
+                   'from' => env( 'TWILIO_FROM' ),
+                   'body' => $text,
+               ]
+           );
         }
+
+        // $formName = $request->get('section');
+        // if($formName === "Maintenance Needed (Reported by Crew)" || $formName === "Maintenance Completed"){
+        //     $client->messages->create(
+        //         $adminPhone,
+        //         [
+        //         'from' => env( 'TWILIO_FROM' ),
+        //         'body' => $text,
+        //         ]
+        //     );
+        // }
+
+        // if($formName === "Missed call" || $formName === "Employee Late/Call In" || $formName ==="Call In Complaint" ){
+        //     $client->messages->create(
+        //         $adminPhone,
+        //         [
+        //         'from' => env( 'TWILIO_FROM' ),
+        //         'body' => $text,
+        //         ]
+        //     );
+        // }
         $text = '';
         return redirect()->route('dashboard')->with("Successfully message sent!");
     }
